@@ -10,7 +10,7 @@ export default function App() {
   const handleTap = () => dispatch({ type: 'TAP' });
 
   const hint =
-    state.revealed.length >= 3
+    state.deck.length === 0
       ? 'Tap anywhere to reshuffle'
       : state.revealed.length === 0
         ? 'Tap anywhere to reveal a card'

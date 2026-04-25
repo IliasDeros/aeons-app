@@ -5,21 +5,24 @@ import './PlayingCard.css';
 
 interface Props {
   card: Card;
-  /** Extra ms to wait before flipping (stagger when multiple cards enter) */
+  /** Extra ms to wait before flipping */
   flipDelay?: number;
+  /** Skip the flip animation — card is already face-up */
+  alreadyFlipped?: boolean;
 }
 
 /**
  * A physical playing card that flips from back → front after mounting.
- * The flip is a CSS 3-D rotateY transition.
+ * Pass alreadyFlipped=true to skip the animation for cards revealed earlier.
  */
-export function PlayingCard({ card, flipDelay = 0 }: Props) {
-  const [flipped, setFlipped] = useState(false);
+export function PlayingCard({ card, flipDelay = 0, alreadyFlipped = false }: Props) {
+  const [flipped, setFlipped] = useState(alreadyFlipped);
 
   useEffect(() => {
+    if (alreadyFlipped) return;
     const id = setTimeout(() => setFlipped(true), flipDelay + 60);
     return () => clearTimeout(id);
-  }, [flipDelay]);
+  }, [flipDelay, alreadyFlipped]);
 
   return (
     <div className={`playing-card${flipped ? ' playing-card--flipped' : ''}`}>
