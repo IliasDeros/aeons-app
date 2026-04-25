@@ -1,0 +1,22 @@
+/* ============================================================
+   CardSpread — fanned layout for revealed cards
+   ============================================================ */
+
+.card-spread {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  /* Tall enough for 3 fanned cards + shadows */
+  min-height: 220px;
+}
+
+.card-spread--empty {
+  min-height: 220px;
+}
+
+.card-spread__slot {
+  position: absolute;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}

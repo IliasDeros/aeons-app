@@ -1,0 +1,43 @@
+/* ============================================================
+   DeckPile — stacked card pile widget
+   ============================================================ */
+
+.deck-pile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.deck-pile__stack {
+  position: relative;
+  width: 88px;
+  height: 123px;
+}
+
+.deck-pile__ghost {
+  position: absolute;
+  width: 88px;
+  height: 123px;
+  border-radius: 8px;
+  background: #1a1a2e;
+  border: 1.5px solid #444;
+}
+
+.deck-pile__top {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  border-radius: 8px;
+  overflow: hidden;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+}
+
+.deck-pile__label {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.65rem;
+  color: #7878a0;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin: 0;
+}
