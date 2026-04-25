@@ -1,0 +1,51 @@
+/* ============================================================
+   FlyingCard — overlay card that travels from the deck to its
+   destination slot while flipping face-up
+   ============================================================ */
+
+.flying-card {
+  position: fixed;
+  width: 110px;
+  height: 154px;
+  z-index: 1000;
+  pointer-events: none;
+  /* Perspective moves with the card so the flip looks the same
+     regardless of where on screen the card is travelling */
+  perspective: 900px;
+  /* Translate from deck to destination */
+  animation: flying-card-move 0.65s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.flying-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.9));
+  /* Flip from back to front while the outer element travels */
+  animation: flying-card-flip 0.65s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes flying-card-move {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(var(--dx), var(--dy)); }
+}
+
+@keyframes flying-card-flip {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(180deg); }
+}
+
+.flying-card__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Front face pre-rotated; visible once the inner has spun 180° */
+.flying-card__face--front {
+  transform: rotateY(180deg);
+}

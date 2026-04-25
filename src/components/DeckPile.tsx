@@ -1,15 +1,18 @@
 import { useId } from 'react';
+import type React from 'react';
 import './DeckPile.css';
 
 interface Props {
   count: number;
+  /** Ref forwarded to the top card element, used to calculate the fly-from position. */
+  topRef?: React.RefObject<HTMLDivElement>;
 }
 
 /**
  * Visual representation of the Turn Order Deck pile.
  * Shows stacked offset cards behind when count > 1.
  */
-export function DeckPile({ count }: Props) {
+export function DeckPile({ count, topRef }: Props) {
   const uid = useId().replace(/:/g, '');
   const bgId     = `dp-bg-${uid}`;
   const emblemId = `dp-em-${uid}`;
@@ -33,7 +36,7 @@ export function DeckPile({ count }: Props) {
         ))}
 
         {/* Top card */}
-        <div className="deck-pile__top">
+        <div className="deck-pile__top" ref={topRef}>
           <svg
             viewBox="0 0 110 154"
             xmlns="http://www.w3.org/2000/svg"
