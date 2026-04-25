@@ -19,7 +19,10 @@ export function PlayingCard({ card, flipDelay = 0, alreadyFlipped = false }: Pro
   const [flipped, setFlipped] = useState(alreadyFlipped);
 
   useEffect(() => {
-    if (alreadyFlipped) return;
+    if (alreadyFlipped) {
+      setFlipped(true);
+      return;
+    }
     const id = setTimeout(() => setFlipped(true), flipDelay + 60);
     return () => clearTimeout(id);
   }, [flipDelay, alreadyFlipped]);

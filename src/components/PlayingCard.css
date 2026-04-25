@@ -7,6 +7,9 @@
   height: 154px;
   perspective: 900px;
   flex-shrink: 0;
+  /* filter must live here, NOT on the inner element —
+     filter flattens transform-style: preserve-3d */
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.75));
 }
 
 .playing-card__inner {
@@ -16,7 +19,6 @@
   transform-style: preserve-3d;
   transform: rotateY(0deg);
   transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.75));
 }
 
 .playing-card--flipped .playing-card__inner {
